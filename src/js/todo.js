@@ -32,7 +32,7 @@ function addtask() {
   for (let q = 0; q < assigned.length; q++) {
     todolist +=
       "<li><input type='checkbox' id='taskin' onclick='completed(this)' value='" +
-      uid++ +
+      q +
       "' /><label>" +
       assigned[q] +
       "</label><input type='text' /><button class='edit'>Edit</button><button class='delete'>Delete</button></li>";
@@ -45,8 +45,6 @@ function completed(obj) {
   if (document.getElementById("taskin").checked === true) {
     var taskid = obj.value;
     complete.push(assigned[taskid]);
-    assigned.splice(0,taskid);
-    assigned.pop();
   }
   let completedList = "<ul id='completed-tasks'>";
   for (let w = 0; w < complete.length; w++) {
@@ -59,5 +57,4 @@ function completed(obj) {
   }
   completedList += "</ul>";
   document.getElementById("donetask").innerHTML = completedList;
-  console.log(assigned);
 }
