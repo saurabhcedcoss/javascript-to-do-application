@@ -99,15 +99,16 @@ for (let index = 0; index < taskList.length; index++) {
   document.getElementById("donetask").innerHTML = completedList;
 }
 }
-// mark as complete------------------------------------------------------------
+// mark as complete or incomplete------------------------------------------------------------
 function chk_stat(obj) {
   var chk_index = obj.id;
 
   if (document.getElementById(chk_index).checked == true) {
     var vals = obj.value;
-    taskList[vals].taskstatus = "completed";
-    for (i = 0; i < taskList.length; i++) {
-      console.log(taskList[i].taskstatus);
+    if(taskList[vals].taskstatus == "assigned"){
+        taskList[vals].taskstatus = "completed";
+    }else{
+        taskList[vals].taskstatus = "assigned";
     }
     let todolist = "<ul id='incomplete-tasks'>";
     for (let index = 0; index < taskList.length; index++) {
