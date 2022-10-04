@@ -7,12 +7,21 @@
     <div class="container">
       <h2>TODO LIST</h2>
       <h3>Add Item</h3>
-      <p><input id="new-task" type="text" /><button onclick="addtask()">Add</button></p>
+      <p>
+        <input id="new-task" type="text" /><button
+          id="btnAdd"
+          onclick="addtask()"
+        >
+          Add</button
+        ><button style="display: none" id="btnEdit" onclick="edittask()">
+          Edit
+        </button>
+      </p>
       <h3>Todo</h3>
       <p id="todotasks"></p>
       <h3>Completed</h3>
       <p id="donetask"></p>
     </div>
   </body>
-  <script src="./js/todo.js"></script>
+  <script src="./js/scripts.js"></script>
 </html>
