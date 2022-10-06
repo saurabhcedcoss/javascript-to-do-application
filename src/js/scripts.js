@@ -54,30 +54,9 @@ function addtask() {
   var newtaskDetails = { taskname: newtask, taskstatus: "assigned" };
   taskList.push(newtaskDetails);
   let todolist = "<ul id='incomplete-tasks'>";
-for (let index = 0; index < taskList.length; index++) {
-  if (taskList[index].taskstatus == "assigned") {
-    todolist +=
-      "<li><input type='checkbox' id='taskin" +
-      index +
-      "' onclick='chk_stat(this)' value='" +
-      index +
-      "' /><label>" +
-      taskList[index].taskname +
-      "</label><input type='text'/><button class='edit' id='editassign" +
-      index +
-      "' value='" +
-      index +
-      "' onclick='edit(this)'>Edit</button><button class='delete' id='delassign" +
-      index +
-      "' value='" +
-      index +
-      "' onclick='del(this)'>Delete</button></li>";
-    document.getElementById("todotasks").innerHTML = todolist;
-  }
-  var completedList = "<ul id='completed-tasks'>";
   for (let index = 0; index < taskList.length; index++) {
-    if (taskList[index].taskstatus == "completed") {
-      completedList +=
+    if (taskList[index].taskstatus == "assigned") {
+      todolist +=
         "<li><input type='checkbox' id='taskin" +
         index +
         "' onclick='chk_stat(this)' value='" +
@@ -93,11 +72,32 @@ for (let index = 0; index < taskList.length; index++) {
         "' value='" +
         index +
         "' onclick='del(this)'>Delete</button></li>";
+      document.getElementById("todotasks").innerHTML = todolist;
     }
+    var completedList = "<ul id='completed-tasks'>";
+    for (let index = 0; index < taskList.length; index++) {
+      if (taskList[index].taskstatus == "completed") {
+        completedList +=
+          "<li><input type='checkbox' id='taskin" +
+          index +
+          "' onclick='chk_stat(this)' value='" +
+          index +
+          "' /><label>" +
+          taskList[index].taskname +
+          "</label><input type='text'/><button class='edit' id='editassign" +
+          index +
+          "' value='" +
+          index +
+          "' onclick='edit(this)'>Edit</button><button class='delete' id='delassign" +
+          index +
+          "' value='" +
+          index +
+          "' onclick='del(this)'>Delete</button></li>";
+      }
+    }
+    completedList += "</ul>";
+    document.getElementById("donetask").innerHTML = completedList;
   }
-  completedList += "</ul>";
-  document.getElementById("donetask").innerHTML = completedList;
-}
 }
 // mark as complete or incomplete------------------------------------------------------------
 function chk_stat(obj) {
@@ -105,10 +105,10 @@ function chk_stat(obj) {
 
   if (document.getElementById(chk_index).checked == true) {
     var vals = obj.value;
-    if(taskList[vals].taskstatus == "assigned"){
-        taskList[vals].taskstatus = "completed";
-    }else{
-        taskList[vals].taskstatus = "assigned";
+    if (taskList[vals].taskstatus == "assigned") {
+      taskList[vals].taskstatus = "completed";
+    } else {
+      taskList[vals].taskstatus = "assigned";
     }
     let todolist = "<ul id='incomplete-tasks'>";
     for (let index = 0; index < taskList.length; index++) {
@@ -250,6 +250,9 @@ function edittask() {
           index +
           "' onclick='del(this)'>Delete</button></li>";
         document.getElementById("todotasks").innerHTML = todolist;
+        document.getElementById("btnAdd").style.display = "";
+        document.getElementById("btnEdit").style.display = "none";
+        document.getElementById("new-task").style.display = "";
       }
       var completedList = "<ul id='completed-tasks'>";
       for (let index = 0; index < taskList.length; index++) {
