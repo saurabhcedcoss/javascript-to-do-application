@@ -252,7 +252,7 @@ function edittask() {
         document.getElementById("todotasks").innerHTML = todolist;
         document.getElementById("btnAdd").style.display = "";
         document.getElementById("btnEdit").style.display = "none";
-        document.getElementById("new-task").style.display = "";
+        document.getElementById("new-task").value = "";
       }
       var completedList = "<ul id='completed-tasks'>";
       for (let index = 0; index < taskList.length; index++) {
